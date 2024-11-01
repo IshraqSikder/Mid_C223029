@@ -57,24 +57,34 @@ class MyHomePage extends StatelessWidget {
                     : size.height * 0.20,
                 width:
                     rippleClicked.value ? size.width * 0.40 : size.width * 0.4,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.blueGrey.shade500,
+                  color: Color.fromARGB(255, 60, 66, 69),
                 ),
               ),
               // 3rd circle
-              AnimatedContainer(
-                duration: const Duration(milliseconds: 555),
-                height: rippleClicked.value
-                    ? size.height * 0.15
-                    : size.height * 0.15,
-                width:
-                    rippleClicked.value ? size.width * 0.40 : size.width * 0.3,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.black,
+              GestureDetector(
+                onTap: () {
+                  rippleClicked.value = !rippleClicked.value;
+                },
+                child: Container(
+                  height: size.height * 0.15,
+                  width: size.width * 0.4,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.black,
+                  ),
                 ),
               ),
+              if (!rippleClicked.value)
+                const Positioned(
+                    child: Text(
+                  'Go',
+                  style: TextStyle(
+                      fontSize: 50,
+                      fontWeight: FontWeight.w200,
+                      color: Colors.red),
+                ))
             ],
           ),
         )));
